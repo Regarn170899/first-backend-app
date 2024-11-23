@@ -7,6 +7,8 @@ import * as process from "process";
 import { User } from "./users/users.model";
 import { RolesModule } from './roles/roles.module';
 import { Role } from "./roles/roles.model";
+import { UserRoles } from "./roles/user-roles.model";
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   controllers:[],
@@ -22,11 +24,12 @@ envFilePath:`.${process.env.NODE_ENV}.env`
       username: process.env.POSTGRES_USER,
       password: String(process.env.POSTGRES_PASSWORD),
       database: process.env.POSTGRES_BD,
-      models: [User,Role],
+      models: [User,Role,UserRoles],
       autoLoadModels:true,
     }),
     UsersModule,
     RolesModule,
+    AuthModule,
   ],
 })
 
